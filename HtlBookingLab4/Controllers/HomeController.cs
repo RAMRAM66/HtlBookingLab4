@@ -14,8 +14,7 @@ namespace HtlBookingLab4.Controllers
         public ActionResult Index()
         {
             var rooms = db.Rooms.Include(r => r.RoomClass);
-            //return View(rooms.ToList());
-            return View();
+            return View(rooms.ToList());
         }
 
         public ActionResult About()
