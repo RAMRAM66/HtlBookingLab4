@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
+using HtlBookingLab4.Models;
 
 namespace HtlBookingLab4.Controllers
 {
     public class HomeController : Controller
     {
+        RmContext db = new RmContext();
         public ActionResult Index()
         {
-            return View();
+            var rooms = db.Rooms.Include(r => r.RoomClass);
+            return View(rooms.ToList());
         }
 
         public ActionResult About()

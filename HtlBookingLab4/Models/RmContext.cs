@@ -8,7 +8,7 @@ namespace HtlBookingLab4.Models
 {
     public class RmContext : DbContext
     {
-        DbSet<RoomClass> RoomClasses { get; set; }
-        DbSet<Room> Room{ get; set; }
+        public DbSet<RoomClass> RoomClasses { get; set; }
+        public DbSet<Room> Rooms{ get; set; }
     }
 }
