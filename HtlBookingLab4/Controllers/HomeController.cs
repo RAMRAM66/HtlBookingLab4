@@ -78,6 +78,22 @@ namespace HtlBookingLab4.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            // Находим в бд книгу
+            Room room = db.Rooms.Find(id);
+            if (room != null)
+            {
+                return View(room);
+            }
+            return RedirectToAction("Index");
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
