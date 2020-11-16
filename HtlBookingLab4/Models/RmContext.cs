@@ -6,7 +6,7 @@ using System.Web;
 
 namespace HtlBookingLab4.Models
 {
-    public class RmContext : DbContext
+    public class RmContext:DbContext
     {
         public DbSet<RoomClass> RoomClasses { get; set; }
         public DbSet<Room> Rooms{ get; set; }

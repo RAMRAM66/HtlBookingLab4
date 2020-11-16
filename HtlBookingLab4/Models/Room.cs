@@ -10,8 +10,8 @@ namespace HtlBookingLab4.Models
         public int Id { get; set; }
         public int RoomCount { get; set; }
         public int BedCount { get; set; }
-        public int Price { get; set; }
-        public int? ClassId { get; set; }
+        public decimal Price { get; set; }
+        public int? RoomClassId { get; set; }
         public RoomClass RoomClass { get; set; }
 
     }

@@ -8,7 +8,7 @@ using HtlBookingLab4.Models;
 
 namespace HtlBookingLab4.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController:Controller
     {
         RmContext db = new RmContext();
         public ActionResult Index()
@@ -17,10 +17,18 @@ namespace HtlBookingLab4.Controllers
             return View(rooms.ToList());
         }
 
+        [HttpGet]
+        public ActionResult Create()
+        {
+            // Формируем список авторов для передачи в представление
+            SelectList roomClasses = new SelectList(db.RoomClasses, "Id", "Name");
+            ViewBag.RoomClasses = roomClasses;
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
