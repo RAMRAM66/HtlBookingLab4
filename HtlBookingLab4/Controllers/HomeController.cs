@@ -26,6 +26,58 @@ namespace HtlBookingLab4.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Create(Room room)
+        {
+            //Добавляем книгу в таблицу
+            db.Rooms.Add(room);
+            db.SaveChanges();
+            // перенаправляем на главную страницу
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            // Находим в бд книгу
+            Room room = db.Rooms.Find(id);
+            if (room != null)
+            {
+                // Создаем список авторов книг для передачи в представление
+                SelectList roomClasses = new SelectList(db.RoomClasses, "Id", "Name", room.RoomClassId);
+                ViewBag.RoomClasses = roomClasses;
+                return View(room);
+            }
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult Edit(Room room)
+        {
+            db.Entry(room).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            // Находим в бд книгу
+            Room room = db.Rooms.Find(id);
+            if (room != null)
+            {
+                db.Rooms.Remove(room);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
